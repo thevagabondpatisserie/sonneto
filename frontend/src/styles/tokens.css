@@ -1,0 +1,38 @@
+/* Sonneto - lấy từ tokens.json của Design System "Sonneto" (phương án A Bếp tối). Sửa ở Design System trước, rồi chép sang đây. */
+:root {
+  --chocolate-900: #1A1411;
+  --chocolate-800: #231B17;
+  --chocolate-700: #2E241F;
+  --line: #3A302A;
+  --line-strong: #4A3E36;
+  --cream: #F2ECE4;
+  --muted: #B9AEA3;
+  --raspberry: #E7A9B3;
+  --ink-muted: #5E534B;
+  --warn-bg: #4A2A1E;
+  --warn-fg: #F5C9A8;
+  --expired: #6E625A;
+
+  --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-body: "Be Vietnam Pro", "Helvetica Neue", Arial, sans-serif;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-28: 112px;
+
+  --radius-photo: 4px;
+  --radius-field: 6px;
+  --radius-card: 8px;
+  --radius-pill: 999px;
+
+  --touch-min: 44px;
+  --button-h: 52px;
+  --content-max: 1280px;
+
+  color-scheme: dark;
+}
