@@ -15,6 +15,7 @@ website_route_rules = [
     {"from_route": "/hoc/<path:app_path>", "to_route": "sonneto"},
 ]
 
+after_install = ["sonneto.cai_dat.after_migrate"]  # site mới cài cũng có trường ngay, không chờ migrate
 after_migrate = ["sonneto.cai_dat.after_migrate"]
 
 doc_events = {
