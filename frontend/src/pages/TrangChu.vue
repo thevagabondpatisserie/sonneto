@@ -35,12 +35,10 @@
     <section id="khoa-hoc" class="wrap muc">
       <div class="muc__dau">
         <h2 class="display-l" tabindex="-1">Khoá học</h2>
-        <p class="muted">Mua một lần, học trong 6 tháng</p>
+        <p class="muted">Mỗi khoá là một hồ sơ. Bấm vào để mở.</p>
       </div>
       <p v-if="loi" class="thong-bao">{{ loi }}</p>
-      <div v-else class="hang-the">
-        <TheKhoaHoc v-for="k in khoaHoc" :key="k.ma" :khoa="k" />
-      </div>
+      <TuHoSo v-else-if="khoaHoc.length" :khoa="khoaHoc" />
     </section>
 
     <section id="tai-bep" class="tai-bep">
@@ -104,7 +102,7 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
 import NutBam from '@/components/NutBam.vue'
-import TheKhoaHoc from '@/components/TheKhoaHoc.vue'
+import TuHoSo from '@/components/TuHoSo.vue'
 import { layKhoaHoc } from '@/api.js'
 import { cuonToi } from '@/cuon.js'
 
