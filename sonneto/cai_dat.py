@@ -13,6 +13,13 @@ TRUONG = {
          "description": "Ví dụ: 1 ngày. Khoá online để trống, web tự hiện số bài.", "insert_after": "sonneto_hinh_thuc"},
         {"fieldname": "sonneto_anh_mo_ta", "fieldtype": "Data", "label": "Mô tả ảnh",
          "description": "Người trong ảnh đang làm gì. Dùng cho người khiếm thị và Google.", "insert_after": "sonneto_thoi_luong"},
+        {"fieldname": "sonneto_mau_bia", "fieldtype": "Select", "label": "Màu bìa hồ sơ",
+         "options": "\nCacao\nDâu\nBơ\nPistachio\nMâm xôi\nKem",
+         "description": "Màu tập hồ sơ của khoá ở trang chủ. Để trống thì web tự xoay vòng màu.",
+         "insert_after": "sonneto_anh_mo_ta"},
+        {"fieldname": "sonneto_lam_duoc", "fieldtype": "Small Text", "label": "Học xong làm được gì",
+         "description": "Một hai câu, hiện trên tờ giấy đầu tiên khi khách mở hồ sơ khoá.",
+         "insert_after": "sonneto_mau_bia"},
     ],
     "LMS Enrollment": [
         {"fieldname": "sonneto_het_han", "fieldtype": "Date", "label": "Học được tới ngày",

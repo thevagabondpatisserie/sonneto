@@ -12,7 +12,7 @@ from frappe import _
 from frappe.rate_limiter import rate_limit
 from frappe.utils import today
 
-from sonneto import han_hoc
+from sonneto import han_hoc, ho_so
 
 
 def _anh(url):
@@ -26,7 +26,8 @@ def danh_sach_khoa():
         "LMS Course",
         filters={"published": 1},
         fields=["name", "title", "short_introduction", "image", "lessons",
-                "sonneto_hinh_thuc", "sonneto_thoi_luong", "sonneto_anh_mo_ta"],
+                "sonneto_hinh_thuc", "sonneto_thoi_luong", "sonneto_anh_mo_ta",
+                "sonneto_so_ngay_hoc", "sonneto_mau_bia", "sonneto_lam_duoc"],
         order_by="featured desc, published_on desc",
     )
     return [
@@ -39,9 +40,42 @@ def danh_sach_khoa():
             "hinhThuc": k.sonneto_hinh_thuc or "Online",
             "soBai": k.lessons or None,
             "thoiLuong": k.sonneto_thoi_luong,
+            "soNgayHoc": han_hoc.so_ngay_hoc(k.sonneto_so_ngay_hoc),
+            "hoSo": _ho_so(k),
         }
         for k in khoa
     ]
+
+
+MA_MAU = {"Cacao": "cacao", "Dâu": "dau", "Bơ": "bo", "Pistachio": "pistachio", "Mâm xôi": "mam-xoi", "Kem": "kem"}
+
+
+def _ho_so(k):
+    """Nội dung hồ sơ khoá ở trang chủ: bài tiêu biểu và phiếu cân lấy từ chính các bài học."""
+    bai = []
+    for ch in frappe.get_all("Chapter Reference", filters={"parent": k.name}, fields=["chapter"], order_by="idx asc"):
+        for lr in frappe.get_all("Lesson Reference", filters={"parent": ch.chapter}, fields=["lesson"], order_by="idx asc"):
+            bai.append(lr.lesson)
+            if len(bai) >= 8:
+                break
+        if len(bai) >= 8:
+            break
+    ten_bai = [frappe.db.get_value("Course Lesson", b, "title") for b in bai[:4]]
+    return {
+        "mau": MA_MAU.get(k.sonneto_mau_bia or ""),
+        "lamDuoc": k.sonneto_lam_duoc or k.short_introduction or "",
+        "baiTieuBieu": [t for t in ten_bai if t],
+        "phieuCan": _phieu_can(bai),
+    }
+
+
+def _phieu_can(bai):
+    for b in bai:
+        ct = _json(frappe.db.get_value("Course Lesson", b, "sonneto_cong_thuc"), None)
+        phieu = ho_so.phieu_can_tu_cong_thuc(ct)
+        if phieu:
+            return phieu
+    return None
 
 
 def _can_dang_nhap():

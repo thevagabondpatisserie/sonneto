@@ -17,7 +17,9 @@ Giao diện theo Design System "Sonneto" (phương án A Bếp tối, chốt 28/
 
 ## Trường thêm vào Frappe Learning
 
-- **LMS Course**: Số ngày được học (mặc định 180), Hình thức (Online hoặc Tại bếp), Thời lượng, Mô tả ảnh.
+- **LMS Course**: Số ngày được học (mặc định 180), Hình thức (Online hoặc Tại bếp), Thời lượng, Mô tả ảnh, Màu bìa hồ sơ, Học xong làm được gì.
+
+Hồ sơ khoá ở trang chủ tự lấy 4 bài đầu làm "bài tiêu biểu" và 5 dòng nguyên liệu của bài đầu tiên có công thức làm "phiếu cân".
 - **LMS Enrollment**: Học được tới ngày (tự điền khi ghi danh, sửa tay để gia hạn riêng).
 - **Course Lesson**: Độ dài video, Ảnh bìa video, Công thức (gram, dạng JSON), Các bước gắn phút (JSON).
 

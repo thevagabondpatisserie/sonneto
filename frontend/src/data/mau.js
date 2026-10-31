@@ -65,6 +65,36 @@ export const khoaHoc = [
       phieuCan: { ten: 'Croissant, 40 chiếc', dong: [['Bột T55', '18.500đ'], ['Bơ lá 82%', '134.400đ'], ['Đường', '2.880đ'], ['Men tươi', '2.400đ'], ['Mỗi chiếc', '4.123đ']] },
     },
   },
+  {
+    ma: 'croissant-ngan-lop',
+    ten: 'Croissant và bánh ngàn lớp',
+    hinhThuc: 'Tại bếp',
+    thoiLuong: '2 ngày',
+    moTa: 'Cán bột bơ lá đều tay, lớp tách rõ, nướng vàng trong lò quán.',
+    anh: anh('8054'),
+    anhMoTa: 'Bánh vừa ra lò ở bếp Sonneto',
+    hoSo: {
+      mau: 'kem',
+      lamDuoc: 'Tự cán một mẻ croissant 40 chiếc lớp tách đều, biết chỉnh nhiệt bột theo thời tiết Sài Gòn.',
+      baiTieuBieu: ['Bột nền và bơ lá', 'Ba lần gấp đơn', 'Cắt, cuộn, ủ', 'Nướng trong lò đối lưu'],
+      phieuCan: { ten: 'Bột croissant', dong: [['Bột T55', '1.000 g'], ['Nước lạnh', '450 g'], ['Đường', '120 g'], ['Men tươi', '40 g'], ['Bơ lá 82%', '560 g']] },
+    },
+  },
+  {
+    ma: 'tart-theo-mua',
+    ten: 'Tart theo mùa',
+    hinhThuc: 'Online',
+    soBai: 8,
+    moTa: 'Vỏ tart giòn không co, kem nền vững, đổi nhân theo trái cây từng mùa.',
+    anh: anh('9280'),
+    anhMoTa: 'Mặt tart trái cây theo mùa',
+    hoSo: {
+      mau: 'mam-xoi',
+      lamDuoc: 'Làm vỏ tart không co không ngấm, ghép với ba loại kem nền để đổi nhân suốt năm.',
+      baiTieuBieu: ['Vỏ pâte sucrée', 'Kem hạnh nhân', 'Kem chanh dây', 'Xếp trái cây và phủ bóng'],
+      phieuCan: { ten: 'Vỏ pâte sucrée', dong: [['Bơ', '150 g'], ['Đường bột', '95 g'], ['Bột hạnh nhân', '30 g'], ['Trứng', '55 g'], ['Bột mì', '250 g']] },
+    },
+  },
 ]
 
 // Hôm nay giả định 28/10/2026 để ba trạng thái hạn học đều hiện ra.
