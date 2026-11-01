@@ -40,7 +40,12 @@
           v-for="{ k, i } in hien"
           :key="k.ma"
           class="folder"
+          :class="{ mo: ma0 === k.ma }"
+          :data-ma="k.ma"
           :style="{ '--color': mau(k, i).nen, '--text': mau(k, i).chu, '--alt': mau(k, i).phuNen, '--alt-text': mau(k, i).phuChu }"
+          @pointerenter="dinhMo(k.ma, $event)"
+          @pointerleave="huyDinhMo"
+          @focusin="nganMo = k.ma"
         >
           <RouterLink class="tab" :to="duong(k)" :aria-label="`Mở khoá ${k.ten}`"><span class="tab-chu">{{ k.ten }}</span></RouterLink>
           <RouterLink v-if="mau(k, i).coPhu" class="tab alt-tab" :to="duong(k)" tabindex="-1" aria-hidden="true"><span class="tab-chu">{{ nhanHinhThuc(k) }}</span></RouterLink>
@@ -216,6 +221,18 @@ const hien = computed(() => {
   return khoaHoc.value.map((k, i) => ({ k, i })).filter(({ k }) => loc.has(k.ma))
 })
 const mau = (k, i) => mauNgan(k, i)
+
+/* Ngăn đang mở. Chuột phải dừng một nhịp ngắn mới mở (lướt qua thì không bật từng ngăn),
+   rời tủ thì ngăn đang mở giữ nguyên. Mặc định mở ngăn cuối như bản mẫu. */
+const nganMo = ref(null)
+const ma0 = computed(() => (hien.value.some(({ k }) => k.ma === nganMo.value) ? nganMo.value : hien.value.at(-1)?.k.ma))
+let henMo
+function dinhMo(ma, e) {
+  if (e.pointerType !== 'mouse') return
+  clearTimeout(henMo)
+  henMo = setTimeout(() => { nganMo.value = ma }, 90)
+}
+function huyDinhMo() { clearTimeout(henMo) }
 const soNgan = (i) => String((i ?? 0) + 1).padStart(2, '0')
 const duong = (k) => `/khoa/${encodeURIComponent(k.ma)}`
 
@@ -308,6 +325,7 @@ onBeforeUnmount(() => {
   document.fonts?.removeEventListener?.('loadingdone', khiDoiCo)
   clearTimeout(henGio)
   clearTimeout(henVua)
+  clearTimeout(henMo)
 })
 </script>
 
@@ -348,12 +366,12 @@ h1 { font: 400 clamp(30px, 3.7vw, 57px)/1.2 var(--serif); letter-spacing: -2px; 
 .tab { position: absolute; top: -33px; height: 33px; left: 3%; width: 24%; font: 400 clamp(15px, 1.6vw, 24px) var(--serif); white-space: nowrap; padding: 0 8px; display: flex; align-items: center; justify-content: center; }
 .tab-chu { display: block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
 .alt-tab { left: 36%; width: 27%; font-size: clamp(14px, 1.4vw, 21px); background: var(--alt); color: var(--alt-text); clip-path: polygon(0 100%, 4% 86%, 9% 22%, 15% 0, 85% 0, 91% 22%, 96% 86%, 100% 100%); top: -25px; height: 25px; padding: 0 9%; }
-.folder-content { height: 45px; overflow: hidden; transition: height .55s cubic-bezier(.2, .75, .2, 1); display: grid; grid-template-columns: 80px 1fr 190px; align-content: start; padding: 22px 5% 0; gap: 28px; cursor: pointer; }
-.folder:last-child .folder-content { height: 220px; }
-.folder:hover .folder-content, .folder:focus-within .folder-content { height: 225px; }
-.folders:has(.folder:hover) .folder:last-child:not(:hover) .folder-content { height: 90px; }
-.folder-content > * { opacity: 0; transform: translateY(10px); transition: opacity .3s, transform .4s; }
-.folder:hover .folder-content > *, .folder:focus-within .folder-content > *, .folder:last-child .folder-content > * { opacity: 1; transform: none; }
+.folder-content { height: 45px; overflow: hidden; transition: height .62s cubic-bezier(.45, 0, .12, 1); display: grid; grid-template-columns: 80px 1fr 190px; align-content: start; padding: 22px 5% 0; gap: 28px; cursor: pointer; }
+.folder.mo .folder-content { height: 225px; }
+.folder:last-child:not(.mo) .folder-content { height: 90px; }
+/* Đóng: chữ tan nhanh trước khi ngăn khép. Mở: ngăn mở ra trước, chữ hiện theo sau. */
+.folder-content > * { opacity: 0; transform: translateY(10px); transition: opacity .18s ease, transform .3s ease; }
+.folder.mo .folder-content > *, .folder:last-child .folder-content > * { opacity: 1; transform: none; transition: opacity .45s ease .16s, transform .6s cubic-bezier(.2, .8, .2, 1) .12s; }
 .number, .folder-meta { font: 9px/1.6 var(--mono); letter-spacing: .2px; }
 .folder-summary h2 { font: 400 30px var(--serif); margin: 0 0 13px; }
 .folder-summary p { max-width: 330px; font-size: 11px; line-height: 1.8; margin: 0; }
@@ -404,7 +422,13 @@ li { margin-bottom: 9px; }
 .side-tab { position: absolute; right: -30px; top: 35px; writing-mode: vertical-rl; background: #ed332b; padding: 28px 9px; border-radius: 0 20px 20px 0; font: 16px var(--serif); max-height: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .board.collage .pink { transform: translate(-35px, 90px) rotate(-5deg); }
 .board.collage .receipt { transform: translate(-40px, -390px) rotate(-7deg); }
-.paper, .receipt { transition: transform .65s ease; }
+.paper, .receipt { transition: transform .65s cubic-bezier(.45, 0, .12, 1); }
+/* Mở hồ sơ: các tờ giấy lần lượt trượt vào khi tấm bảng nở ra. */
+.pink, .white, .receipt { animation: giay-vao .7s cubic-bezier(.2, .8, .2, 1) both; }
+.white { animation-delay: .16s; }
+.pink { animation-delay: .26s; }
+.receipt { animation-delay: .4s; }
+@keyframes giay-vao { from { opacity: 0; translate: 0 34px; } to { opacity: 1; translate: 0 0; } }
 .lesson-bottom { display: flex; justify-content: space-between; margin: 25px 27px 40px 0; }
 .lesson-bottom .nut { padding: 15px 0; }
 
@@ -454,8 +478,7 @@ li { margin-bottom: 9px; }
   .folder-meta { display: none; }
   .folder-summary h2 { font-size: 23px; }
   .folder-summary p { font-size: 10px; }
-  .folder:last-child .folder-content { height: 205px; }
-  .folder:hover .folder-content, .folder:focus-within .folder-content { height: 205px; }
+  .folder.mo .folder-content, .folder:last-child .folder-content { height: 205px; }
   .open-label { margin-top: 13px; }
   footer { gap: 12px 20px; line-height: 1.8; font-size: 8px; flex-wrap: wrap; }
   footer span:first-child { max-width: 180px; }
@@ -488,6 +511,23 @@ li { margin-bottom: 9px; }
   .logo span { font-size: 6.5px; letter-spacing: 1.4px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .st *, .st *::before { transition: none !important; scroll-behavior: auto !important; }
+  .st *, .st *::before { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+</style>
+
+<style>
+/* Chuyển cảnh giữa tủ và trang giấy (View Transitions, Chrome và Safari mới). Dải màu ngăn được bấm
+   nở thành tấm bảng; trình duyệt không hỗ trợ thì chỉ còn giấy trượt vào. Tên "bang" do main.js gắn. */
+.st .board { view-transition-name: bang; }
+::view-transition-group(bang) { animation-duration: .62s; animation-timing-function: cubic-bezier(.45, 0, .12, 1); overflow: clip; }
+::view-transition-old(bang), ::view-transition-new(bang) { width: 100%; height: 100%; object-fit: none; object-position: 50% 0; }
+::view-transition-old(bang) { animation: .2s ease both vt-tan; }
+::view-transition-new(bang) { animation: .26s ease both vt-hien; }
+::view-transition-old(root) { animation: .2s ease both vt-tan; }
+::view-transition-new(root) { animation: .36s ease .18s both vt-hien; }
+@keyframes vt-tan { to { opacity: 0; } }
+@keyframes vt-hien { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
 </style>

@@ -167,12 +167,47 @@ async def phan_xem_thu(b):
             ghi(f"{w}px: trang giấy không tràn ngang", await m.evaluate("document.documentElement.scrollWidth") == w)
             await m.close()
 
+        # Chuyển động: lướt nhanh qua nhiều ngăn không được bật từng ngăn (trước sửa: bật cả 5 ngăn).
+        c = await b.new_page(viewport={"width": 1440, "height": 900})
+        await chan_font(c)
+        await c.goto("http://localhost:8771/")
+        await c.wait_for_selector(".folder")
+        o = await c.locator(".folder .tab:not(.alt-tab)").nth(0).bounding_box()
+        x = o["x"] + o["width"] / 2
+        await c.mouse.move(x, o["y"] - 60)
+        await c.wait_for_timeout(600)
+        await c.evaluate("window.BAT=0;new MutationObserver(m=>m.forEach(r=>{if(r.target.classList.contains('mo'))BAT++})).observe(document.querySelector('.folders'),{subtree:true,attributes:true,attributeFilter:['class']})")
+        for k in range(9):
+            await c.mouse.move(x, o["y"] + 10 + k * 22)
+            await c.wait_for_timeout(8)
+        dung = await c.evaluate("[...document.querySelectorAll('.folder')].findIndex(e => e.matches(':hover'))")
+        await c.wait_for_timeout(500)
+        bat = await c.evaluate("BAT")
+        ghi("Lướt nhanh qua nhiều ngăn chỉ mở ngăn chuột dừng lại", bat <= 1, f"{bat} lần mở, chuột dừng ở ngăn {dung + 1}")
+        await c.mouse.move(5, 5)
+        await c.wait_for_timeout(700)
+        mo = await c.evaluate("[...document.querySelectorAll('.folder')].findIndex(e => e.classList.contains('mo'))")
+        ghi("Rời tủ thì ngăn đang mở giữ nguyên, tủ không nhảy", mo == dung, f"ngăn mở {mo + 1}")
+        await c.evaluate("""window.HINH = null; const goc = document.startViewTransition.bind(document);
+          document.startViewTransition = (cb) => { const t = goc(cb); t.ready.then(() => { const a = document.getAnimations().find(x => x.effect.pseudoElement === '::view-transition-group(bang)');
+            window.HINH = a ? a.effect.getKeyframes().map(k => parseFloat(k.height)) : []; }); return t }; 0""")
+        await c.locator(".folder .tab:not(.alt-tab)").nth(1).click()
+        await c.wait_for_timeout(1200)
+        hinh = await c.evaluate("HINH")
+        ghi("Mở hồ sơ: dải màu của ngăn nở thành tấm bảng", bool(hinh) and hinh[0] < 260 and hinh[-1] > 500, str(hinh))
+        await c.close()
+
         r = await b.new_page(viewport={"width": 1440, "height": 900}, reduced_motion="reduce")
         await chan_font(r)
         await r.goto("http://localhost:8771/")
         await r.wait_for_selector(".folder")
         td = await r.locator(".folder-content").first.evaluate("e => getComputedStyle(e).transitionDuration")
         ghi("Giảm chuyển động: tắt hiệu ứng mở ngăn", td in ("0s", "0s, 0s"), td)
+        await r.evaluate("window.VT=0; const g = document.startViewTransition.bind(document); document.startViewTransition = (c) => { VT++; return g(c) }; 0")
+        await r.locator(".folder .tab:not(.alt-tab)").nth(0).click()
+        await r.wait_for_selector(".board")
+        an = await r.locator(".pink").evaluate("e => getComputedStyle(e).animationName")
+        ghi("Giảm chuyển động: không chuyển cảnh, giấy không trượt", await r.evaluate("VT") == 0 and an == "none", f"VT {await r.evaluate('VT')}, {an}")
         ghi("Không lỗi JavaScript trên bản xem thử", not loi, "; ".join(loi))
     finally:
         srv.kill()
