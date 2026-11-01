@@ -1,14 +1,14 @@
 # Sonneto
 
-App Frappe cho web Sonneto: trang giới thiệu, khoá học có hạn học, màn học có công thức theo gram, màn Khoá của tôi, form để lại số. Chạy trên một **site riêng** trên Frappe Cloud với **tên miền riêng**, cài kèm Frappe Learning (app `lms`). Không chung site với Vagabond.
+App Frappe cho web Sonneto: trang chủ là một tủ khoá học (bấm ngăn nào mở trang giấy của khoá đó), khoá học có hạn học, màn học có công thức theo gram, màn Khoá của tôi, hộp để lại số. Chạy trên một **site riêng** trên Frappe Cloud với **tên miền riêng**, cài kèm Frappe Learning (app `lms`). Không chung site với Vagabond.
 
-Giao diện theo Design System "Sonneto" (phương án A Bếp tối, chốt 28/10/2026).
+Trang chủ theo bản giao diện anh Việt duyệt 01/11/2026 (nguồn gốc ở `design/sonneto-homepage-approved/`). Màn học và Khoá của tôi vẫn theo Design System "Sonneto" (Bếp tối, 28/10/2026).
 
 ## Cấu trúc
 
 | Thư mục | Nội dung |
 | --- | --- |
-| `frontend/` | Giao diện Vue 3 + Vite. `src/pages`: Trang chủ, Bài học, Khoá của tôi. `src/styles/tokens.css`: màu, chữ, khoảng cách lấy từ Design System. |
+| `frontend/` | Giao diện Vue 3 + Vite. `src/pages/TrangChu.vue`: tủ khoá học (`/`) và trang giấy từng khoá (`/khoa/<mã>`). `src/tu.js`: phép thuần của tủ (màu ngăn, tìm có/không dấu, lưu khoá trên thiết bị, trạng thái ghi danh). `src/pages`: còn Bài học, Khoá của tôi. |
 | `sonneto/api.py` | Các hàm giao diện gọi: danh sách khoá, khoá của tôi, bài học (chặn khi hết hạn), gửi yêu cầu liên hệ. |
 | `sonneto/han_hoc.py` | Phép tính hạn học (thuần, không cần Frappe). |
 | `sonneto/cai_dat.py` | Thêm trường vào doctype của Frappe Learning sau mỗi lần migrate. |
@@ -17,9 +17,9 @@ Giao diện theo Design System "Sonneto" (phương án A Bếp tối, chốt 28/
 
 ## Trường thêm vào Frappe Learning
 
-- **LMS Course**: Số ngày được học (mặc định 180), Hình thức (Online hoặc Tại bếp), Thời lượng, Mô tả ảnh, Màu bìa hồ sơ, Học xong làm được gì.
+- **LMS Course**: Số ngày được học (mặc định 180), Hình thức (Online hoặc Tại bếp), Thời lượng, Mô tả ảnh, Màu ngăn ở trang chủ, Học xong làm được gì.
 
-Hồ sơ khoá ở trang chủ tự lấy 4 bài đầu làm "bài tiêu biểu" và 5 dòng nguyên liệu của bài đầu tiên có công thức làm "phiếu cân".
+Trang giấy của khoá tự lấy 4 bài đầu làm mục "Trong khoá" và 5 dòng nguyên liệu của bài đầu tiên có công thức làm mục "Chuẩn bị".
 - **LMS Enrollment**: Học được tới ngày (tự điền khi ghi danh, sửa tay để gia hạn riêng).
 - **Course Lesson**: Độ dài video, Ảnh bìa video, Công thức (gram, dạng JSON), Các bước gắn phút (JSON).
 
@@ -41,6 +41,7 @@ npm run dev            # chạy thử, cần site Frappe chạy cùng
 npm run build:preview  # bản xem thử dùng dữ liệu mẫu, ra frontend/dist-preview
 npm run build          # bản thật, ra sonneto/public/frontend và sonneto/www/sonneto.html
 npm test               # kiểm thử phép tính phía giao diện
+python3 kiem-thu/kiem_trang_chu.py   # kiểm tương tác trang chủ trên trình duyệt (cần Playwright, build trước)
 cd .. && python3 -m unittest sonneto.kiem_thu.test_han_hoc
 ```
 
@@ -56,5 +57,6 @@ Build xong phải commit cả `sonneto/public/frontend` và `sonneto/www/sonneto
 
 - Thanh toán VietQR hoặc PayOS (Frappe Learning không có cổng Việt Nam).
 - Video DRM (đề xuất VdoCipher, làm sau).
-- Trang chi tiết từng khoá; nút Gia hạn và Tải công thức đang chưa nối.
+- Thanh toán khi giữ chỗ (hiện nút Giữ chỗ và Gia hạn mở hộp để lại số); nút Tải công thức chưa nối.
+- Danh sách đã lưu nằm trên thiết bị, chưa đồng bộ theo tài khoản.
 - Chặn học viên đi vòng qua đường `/lms` có sẵn của Frappe Learning để xem bài đã hết hạn.

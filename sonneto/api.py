@@ -47,7 +47,7 @@ def danh_sach_khoa():
     ]
 
 
-MA_MAU = {"Cacao": "cacao", "Dâu": "dau", "Bơ": "bo", "Pistachio": "pistachio", "Mâm xôi": "mam-xoi", "Kem": "kem"}
+MA_MAU = {"Mận": "man", "Cam": "cam", "Xanh rêu": "xanh-reu", "Đỏ": "do", "Tím": "tim", "Xanh dương": "xanh-duong", "Hồng": "hong"}
 
 
 def _ho_so(k):

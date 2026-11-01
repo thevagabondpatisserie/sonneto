@@ -12,6 +12,7 @@ const router = createRouter({
   history: import.meta.env.MODE === 'preview' ? createWebHashHistory() : createWebHistory('/'),
   routes: [
     { path: '/', component: TrangChu },
+    { path: '/khoa/:ma', component: TrangChu },
     { path: '/khoa-cua-toi', component: KhoaCuaToi, meta: { app: true } },
     { path: '/hoc/:khoa/:bai', component: BaiHoc, meta: { app: true } },
   ],

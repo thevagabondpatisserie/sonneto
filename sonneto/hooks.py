@@ -7,11 +7,12 @@ app_license = "unlicensed"
 
 required_apps = ["lms"]
 
-# Trang chủ và hai màn ứng dụng do giao diện Vue (thư mục frontend) vẽ.
+# Trang chủ (tủ khoá học), trang hồ sơ từng khoá và hai màn ứng dụng do giao diện Vue (thư mục frontend) vẽ.
 # Chỉ khai đúng các đường này, không bắt "/<path>" để khỏi đè /login, /lms, /app.
 home_page = "sonneto"
 website_route_rules = [
     {"from_route": "/khoa-cua-toi", "to_route": "sonneto"},
+    {"from_route": "/khoa/<path:app_path>", "to_route": "sonneto"},
     {"from_route": "/hoc/<path:app_path>", "to_route": "sonneto"},
 ]
 
