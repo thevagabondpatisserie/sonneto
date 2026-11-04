@@ -1,0 +1,22 @@
+SONNETO - MOUSSE VANI
+CÔNG THỨC MẪU ĐỂ THỬ GIAO DIỆN
+Nguồn: frontend/src/data/mau.js của kho Sonneto.
+Chưa phải tài liệu khóa học chính thức hoặc công thức đã được nghiệm thu.
+
+NGUYÊN LIỆU
+Sữa tươi: 250 g
+Lòng đỏ trứng: 60 g
+Đường: 50 g
+Gelatin lá: 8 g
+Kem tươi 35%: 400 g
+Vani: 1 trái
+
+CÁC BƯỚC MẪU TỪ BÀI “ĐỔ MOUSSE VÀ LẮP NHÂN”
+1. Ngâm gelatin trong nước đá 10 phút.
+2. Nấu sữa, lòng đỏ, đường tới 82°C.
+3. Cho gelatin vào, để nguội còn 30°C.
+4. Trộn kem đánh bông, đổ lớp mousse thứ nhất.
+5. Lắp nhân dâu, đổ lớp mousse thứ hai.
+6. Làm phẳng mặt, cấp đông 4 giờ.
+
+Ghi chú: phần nhân dâu và nền bánh thuộc bài học khác, không nằm trong phiếu mẫu này.
