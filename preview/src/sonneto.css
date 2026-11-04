@@ -93,3 +93,16 @@
 .folder-body{padding-top:48px}
 .folder:last-of-type{height:205px}
 @media(max-width:700px){.folder-body{padding-top:42px}.folder:last-of-type{height:195px}}
+/* Motion atelier: physical cover and independently choreographed papers. */
+.scene{position:relative;isolation:isolate;perspective:1600px}
+.motion-cover{position:absolute;inset:0;z-index:20;background:var(--folder);border-radius:8px;transform-origin:left center;backface-visibility:hidden;pointer-events:none;display:flex;flex-direction:column;padding:clamp(28px,6vw,85px);box-shadow:12px 12px 50px #0005;overflow:hidden;color:#f3eedf;min-height:400px}
+.motion-cover:after{content:'';position:absolute;left:0;top:0;bottom:0;width:12px;background:linear-gradient(90deg,#0004,transparent)}
+.cover-tab{font:11px 'Be Vietnam Pro',sans-serif;letter-spacing:.14em}.cover-number{font:100px/1.2 'Playfair Display',serif;opacity:.45;margin-top:50px}.motion-cover strong{font:clamp(32px,5vw,68px)/1.15 'Playfair Display',serif;max-width:600px}.cover-rule{height:1px;background:#fff6;margin:35px 0}.motion-cover small{font-size:12px}
+.workspace .desk-piece,.workspace .ready .desk-piece{opacity:1;transform:none;transition:none}
+.workspace .layered-video,.workspace .lesson-list,.workspace .recipe-card{transform-origin:50% 15%;backface-visibility:hidden}
+.workspace.ready .motion-cover,.workspace.closing .motion-cover{visibility:hidden}
+.motion-options{border-top:1px solid #ffffff25;padding-top:12px}.motion-options summary{color:#eeede7}.motion-picker button[aria-pressed=true]{background:#f3eedf;color:#222}.motion-picker{flex-wrap:wrap}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){.recipe-card:hover{transform:rotate(-2deg) translateY(-5px)!important;transition:transform 260ms}.folder-tab{transition:filter 200ms}.folder:hover .folder-tab{filter:brightness(1.12)}}
+@media(prefers-reduced-motion:reduce){.sonneto:not([data-full-motion=true]) .motion-cover{display:none}.sonneto .overview{transition:none}.workspace *, .folder{animation-duration:0s!important;transition-duration:0s!important}}
+
+.motion-audition{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px 0;border-bottom:1px solid #ffffff25}.motion-audition b{font-size:10px;letter-spacing:.15em;color:#e5a6b5}.motion-audition p{font-size:12px;line-height:1.7;margin:8px 0 0}.motion-audition button{border:1px solid #f3eedf66;background:#f3eedf;color:#222;padding:13px 16px;border-radius:24px;white-space:nowrap;min-height:44px}@media(max-width:700px){.motion-audition{align-items:flex-start;flex-direction:column;gap:12px}}

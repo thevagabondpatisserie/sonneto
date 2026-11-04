@@ -8,3 +8,9 @@
 - Vào bài mẫu, đổi tab, lưu ghi chú báo Đã lưu trên thiết bị này; đóng về tủ đạt.
 - Chưa kiểm video thật/playback liên tục, Safari, mọi motion/reduced-motion, hoặc quyền LMS. Không có video thật trong repo. Đây là smoke test preview, không phải nghiệm thu production.
 - Chưa merge/deploy web Sonneto chính. Workflow build artifact chưa đồng nghĩa deploy.
+
+## Motion atelier 02
+- Truy cập trực tiếp site Frappe /xem-thu. Chrome đang báo prefers-reduced-motion=true; source cũ đặt duration0 trong trường hợp này.
+- Bản mới có opt-in motion đầy đủ; đã bật qua UI và quan sát bìa đang xoay trên screenshot.
+- Sáu lựa chọn mở/đóng đạt trong Chrome qua CUA, đợi dialog.ready và dialog hidden giữa mỗi vòng. Một lượt automation ban đầu chạy nhanh hơn animation nên không tính là đạt; chạy lại đủ cả sáu với đợi trạng thái.
+- Frappe build riêng dùng base /assets/sonneto/xem-thu-motion/, tài nguyên local. Chưa deploy route này.

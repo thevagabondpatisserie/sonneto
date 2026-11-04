@@ -39,3 +39,20 @@ Tiếp tục tích hợp mẫu đã duyệt vào `frontend/` Vue + Frappe/LMS tr
 ## Kiểm trước khi phát hành chính
 
 Build sạch, tải asset không lỗi; kiểm trực tiếp 1440/390/320px, mở/đóng hồ sơ, 4 kiểu motion, reduced-motion, khung C và đổi tab khi phát video, notes, tải TXT. Kiểm riêng đăng nhập/hạn học khi đưa vào Vue. Build thành công không thay nghiệm thu trình duyệt.
+
+## Motion atelier 02
+
+Sáu kiểu mở: rút ngang, lật bìa, xòe giấy, nhấc khỏi tủ, xoay trên bàn, mở từ giữa. Bìa 3D mở trên trục trái, các giấy bung độc lập theo nhịp; đóng gom giấy trước. Đổi tab có chuyển động riêng, không remount video. Tự đổi tránh lặp liên tiếp.
+
+Mặc định tôn trọng giảm chuyển động hệ thống. Nút **Bật motion đầy đủ** là lựa chọn chủ động chỉ trong bản thử, không thay cài đặt máy. Nếu máy giảm chuyển động, có thông báo rõ ngay đầu trang.
+
+Đã chuẩn bị route Frappe `/xem-thu-motion`, tách `/xem-thu`. Build từ gốc repo:
+
+```sh
+cd preview
+npm run build
+npx vite build --base=/assets/sonneto/xem-thu-motion/ --outDir ../sonneto/public/xem-thu-motion --emptyOutDir
+cp ../sonneto/public/xem-thu-motion/index.html ../sonneto/www/xem-thu-motion.html
+```
+
+Các bước trên chỉ build. Cần deploy app Sonneto đúng SHA mới có route trên site thật.
