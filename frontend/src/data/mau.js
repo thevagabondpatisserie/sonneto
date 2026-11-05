@@ -14,7 +14,6 @@ export const khoaHoc = [
     anh: anh('8034'),
     anhMoTa: 'Học viên trang trí bánh bûche',
     hoSo: {
-      mau: 'cacao',
       lamDuoc: 'Cuộn được bông lan mỏng không nứt, phết kem bơ mịn, trang trí một khúc bûche đủ bán mùa lễ.',
       baiTieuBieu: ['Bông lan cuộn không nứt', 'Kem bơ Ý ổn định', 'Ganache phủ vân gỗ', 'Nấm meringue và trang trí'],
       phieuCan: { ten: 'Bông lan cuộn cacao', dong: [['Trứng', '200 g'], ['Đường', '120 g'], ['Bột mì', '60 g'], ['Bột cacao', '20 g'], ['Bơ chảy', '30 g']] },
@@ -29,7 +28,6 @@ export const khoaHoc = [
     anh: anh('9288'),
     anhMoTa: 'Học viên bắt kem lên bánh fraisier',
     hoSo: {
-      mau: 'dau',
       lamDuoc: 'Dựng một chiếc fraisier đứng khuôn, mặt cắt dâu đều, lớp mousse không chảy khi ra quầy.',
       baiTieuBieu: ['Bông lan joconde', 'Nhân dâu và gel', 'Đổ mousse và lắp nhân', 'Lớp gương bền trong trời nóng'],
       phieuCan: { ten: 'Mousse vani', dong: [['Sữa tươi', '250 g'], ['Lòng đỏ trứng', '60 g'], ['Đường', '50 g'], ['Gelatin lá', '8 g'], ['Kem tươi 35%', '400 g']] },
@@ -44,7 +42,6 @@ export const khoaHoc = [
     anh: anh('7584'),
     anhMoTa: 'Khay bánh nướng nhỏ vừa ra lò',
     hoSo: {
-      mau: 'bo',
       lamDuoc: 'Nướng được một khay madeleine nở gù và financier giòn mép, để quầy cả ngày vẫn mềm.',
       baiTieuBieu: ['Madeleine nở gù', 'Financier bơ nâu', 'Bánh nướng nhỏ theo mùa', 'Bảo quản và trưng bày ở quầy'],
       phieuCan: { ten: 'Madeleine mật ong', dong: [['Bơ', '125 g'], ['Trứng', '150 g'], ['Đường', '120 g'], ['Bột mì', '125 g'], ['Mật ong', '20 g']] },
@@ -59,7 +56,6 @@ export const khoaHoc = [
     anh: anh('7634'),
     anhMoTa: 'Học viên ghi chép công thức',
     hoSo: {
-      mau: 'pistachio',
       lamDuoc: 'Tự tính giá vốn từng chiếc bánh từ công thức, biết món nào lời, món nào cần đổi giá.',
       baiTieuBieu: ['Đọc công thức nhiều tầng', 'Hao hụt khi sơ chế', 'Giá vốn từng chiếc', 'Đặt giá bán cho quán'],
       phieuCan: { ten: 'Croissant, 40 chiếc', dong: [['Bột T55', '18.500đ'], ['Bơ lá 82%', '134.400đ'], ['Đường', '2.880đ'], ['Men tươi', '2.400đ'], ['Mỗi chiếc', '4.123đ']] },
@@ -74,7 +70,6 @@ export const khoaHoc = [
     anh: anh('8054'),
     anhMoTa: 'Bánh vừa ra lò ở bếp Sonneto',
     hoSo: {
-      mau: 'kem',
       lamDuoc: 'Tự cán một mẻ croissant 40 chiếc lớp tách đều, biết chỉnh nhiệt bột theo thời tiết Sài Gòn.',
       baiTieuBieu: ['Bột nền và bơ lá', 'Ba lần gấp đơn', 'Cắt, cuộn, ủ', 'Nướng trong lò đối lưu'],
       phieuCan: { ten: 'Bột croissant', dong: [['Bột T55', '1.000 g'], ['Nước lạnh', '450 g'], ['Đường', '120 g'], ['Men tươi', '40 g'], ['Bơ lá 82%', '560 g']] },
@@ -89,7 +84,6 @@ export const khoaHoc = [
     anh: anh('9280'),
     anhMoTa: 'Mặt tart trái cây theo mùa',
     hoSo: {
-      mau: 'mam-xoi',
       lamDuoc: 'Làm vỏ tart không co không ngấm, ghép với ba loại kem nền để đổi nhân suốt năm.',
       baiTieuBieu: ['Vỏ pâte sucrée', 'Kem hạnh nhân', 'Kem chanh dây', 'Xếp trái cây và phủ bóng'],
       phieuCan: { ten: 'Vỏ pâte sucrée', dong: [['Bơ', '150 g'], ['Đường bột', '95 g'], ['Bột hạnh nhân', '30 g'], ['Trứng', '55 g'], ['Bột mì', '250 g']] },

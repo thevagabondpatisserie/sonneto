@@ -1,7 +1,7 @@
 // Một cửa duy nhất lấy dữ liệu. Chế độ preview dùng dữ liệu mẫu (nạp riêng, không vào bản build thật);
 // trên site thật gọi các hàm của app sonneto (bọc Frappe Learning), xem sonneto/api.py.
 
-const XEM_THU = import.meta.env.MODE === 'preview'
+export const XEM_THU = import.meta.env.MODE === 'preview'
 const mau = () => import('./data/mau.js')
 
 async function goi(ham, thamSo = {}) {
@@ -37,4 +37,12 @@ export async function layKhoaCuaToi() {
 
 export async function layBaiHoc(khoa, bai) {
   return XEM_THU ? (await mau()).baiHoc : goi('bai_hoc', { khoa, bai })
+}
+
+/** Frappe đặt cookie user_id khi đăng nhập ("Guest" khi chưa). Bản xem thử coi như đã đăng nhập. */
+export function daDangNhap() {
+  if (XEM_THU) return true
+  const m = document.cookie.match(/(?:^|;\s*)user_id=([^;]*)/)
+  const u = m ? decodeURIComponent(m[1]) : ''
+  return !!u && u !== 'Guest'
 }
