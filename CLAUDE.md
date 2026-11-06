@@ -30,21 +30,21 @@ tại; ghi chú trong Claude Project chỉ là nhật ký. Nhật ký đầy đ�
 
 ## Hai cách Codex nhận việc trên repo này
 
-1. Codex cloud qua tích hợp GitHub (tài khoản `chatgpt-codex-connector[bot]`): chỉ
-   hoạt động khi repo `thevagabondpatisserie/sonneto` đã được bật trong phần
-   GitHub của Codex (chatgpt.com/codex, mục Settings, GitHub). Tới 06/11/2026 chưa
-   có comment nào của `chatgpt-codex-connector[bot]` trên repo này, dù đã gọi
-   `@codex review` trên PR #5 và chờ hơn 30 phút (bên vagabond bot trả lời trong
-   vài phút). Chỉ coi luồng tự động đã chạy khi thấy comment của bot.
-2. Codex local trên máy anh Việt: đăng comment bằng chính tài khoản
-   `thevagabondpatisserie`. Chỉ chạy khi anh Việt mở Codex và dán việc vào.
+1. Codex cloud qua tích hợp GitHub: cài đặt Sonneto đã được Codex desktop
+   kiểm trực tiếp ngày 06/11/2026, có trong danh sách repo và bật review tự động.
+   Tuy nhiên chưa thấy bot trả lời các yêu cầu PR #1/#5 sau hơn 30 phút.
+   Đây là luồng CHƯA XÁC MINH hoạt động, không kết luận thiếu quyền chỉ từ việc im lặng.
+2. Codex local trên máy anh Việt: có thể đăng comment bằng tài khoản
+   `thevagabondpatisserie`; tên người đăng không chứng minh cloud bot đã chạy.
 
-Vì vậy khi giao việc cho Codex, Claude phải làm đủ hai bước:
-
-- Đăng comment giao việc trên đúng PR theo mẫu ở `AGENTS.md` mục 4 (dòng đầu
-  `[GIAO CODEX]`, SHA nền, phạm vi tệp, hành vi cần đạt, ca kiểm).
-- Báo anh Việt trong chat bằng một câu: "Việc X đã ghi ở link Y, anh dán cho Codex
-  chạy". Không tự coi là Codex đã nhận. Không hẹn giờ chờ.
+Khi giao việc, đăng đúng PR theo mẫu `[GIAO CODEX]` trong `AGENTS.md` mục 4.
+`@codex review` yêu cầu rà code; không đồng nghĩa giao sửa hay tạo lịch làm việc.
+Comment đã gửi, bot đã nhận, task đang chạy và code đã push là bốn trạng thái riêng.
+Merge tài liệu này không tự bật bot hoặc tự đánh thức phiên Codex desktop.
+Trong lúc cloud chưa xác minh, báo anh Việt link để giao cho Codex desktop.
+Khi anh đã giao việc trong chat hiện tại, Codex tiếp tục trực tiếp, không bắt anh
+chép lại brief đã đọc được trên PR. Trước khi làm kiểm task cloud để tránh sửa trùng.
+Không coi reaction hoặc CI xanh là review đạt. Không hẹn giờ chờ nếu chưa có cơ chế.
 
 Khi nhận lại bản của Codex: lấy đúng commit Codex báo, build lại từ nguồn để đối
 chiếu từng tệp, kiểm bằng Playwright ở 390 và 1440, rồi mới đặt lên `main`.
@@ -53,7 +53,7 @@ chiếu từng tệp, kiểm bằng Playwright ở 390 và 1440, rồi mới đ�
 
 - `git push origin <nhánh>` chạy được trên repo này (khác với vagabond). Mở PR
   bằng `gh api`, không Draft, mô tả có phần tóm tắt nghiệp vụ cho anh Việt trước.
-- Merge CHỈ khi anh Việt cho phép cho đúng PR đó trong phiên. Codex chưa rà thì
+- Merge CHỈ khi anh Việt đã cho phép đúng PR hoặc phạm vi đó. Quyền đã cấp tiếp tục có hiệu lực qua các phiên, trừ khi anh thu hồi hoặc phạm vi thay đổi. Codex chưa rà thì
   ghi rõ "Codex chưa rà" trong comment merge.
 - Deploy Frappe Cloud, bench "Sonneto" (bench-51208), site sonneto.s.frappe.cloud:
   Apps, dấu ba chấm của app Sonneto, Fetch Latest Updates, rồi Update Available,
@@ -72,7 +72,7 @@ chiếu từng tệp, kiểm bằng Playwright ở 390 và 1440, rồi mới đ�
 
 ## Ba việc không làm
 
-1. Không merge, không deploy khi anh Việt chưa cho phép trong phiên.
+1. Không merge, không deploy khi chưa được anh Việt cho phép đúng phạm vi.
 2. Không nhập mật khẩu, khoá API, token vào bất kỳ trang nào.
 3. Không commit video hoặc ảnh tham chiếu của bên thứ ba (Pinterest, Higgsfield)
    vào repo public; mô tả bằng chữ trên PR và lưu khung hình trong Claude Project.

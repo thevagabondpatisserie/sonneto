@@ -30,8 +30,8 @@ em dash hay en dash.
 
 ## 3. Trước khi bàn giao
 
-- Giao diện: chạy Playwright ở 390 và 1440, mở ngăn, đóng ngăn, mở ngăn cuối sau
-  khi đóng, đọc `document.getAnimations()` khi cần chứng minh có chuyển động.
+- Giao diện: kiểm trực tiếp trình duyệt ở 390 và 1440 bằng công cụ được môi trường cho phép (CUA hoặc Playwright), mở ngăn, đóng ngăn, mở ngăn cuối sau
+  khi đóng, khi cần chứng minh chuyển động, dùng ảnh giữa animation hoặc API animation nếu công cụ hỗ trợ; không vượt giới hạn công cụ.
   Không tài nguyên lỗi, không lỗi JS, không tràn ngang.
 - Phần Frappe: `python3 -m unittest sonneto.kiem_thu.test_han_hoc` và
   `cd frontend && npm test`.

@@ -38,4 +38,4 @@ Chưa thấy tài khoản `chatgpt-codex-connector[bot]` trả lời trên repo 
 dù đã gọi `@codex review` (06/11, chờ hơn 30 phút), trong khi bên vagabond bot
 trả lời trong vài phút. Mọi comment "của Codex" tới nay là
 Codex local đăng bằng tài khoản anh Việt. Giao việc xong phải báo anh Việt dán
-cho Codex chạy, hoặc anh bật repo này trong phần GitHub của Codex.
+cho Codex chạy. Kiểm trực tiếp 06/11 cho thấy repo đã có trong danh sách và review tự động bật, nhưng chưa thấy phản hồi bot. Merge quy trình không tự kích hoạt một task.
