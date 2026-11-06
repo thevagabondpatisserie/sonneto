@@ -1,5 +1,7 @@
 # Sonneto — bản xem thử tự chủ
 
+**Bản hiện tại: [Bàn giấy 2D](MOTION-2D.md), thay toàn bộ motion 3D của atelier 02 bên dưới.**
+
 Bản duyệt giao diện trang chủ 01 + video khung C. Chạy từ repo, không cần tài khoản, SDK, máy chủ hay CDN Higgsfield. Font, logo, icon, ảnh và công thức mẫu đi kèm. Source chuẩn để sửa preview là `preview/src/`; snapshot `design/sonneto-approved-01-frame-c/` giữ nguyên để đối chiếu.
 
 ## Xem ngay, không cần Node
