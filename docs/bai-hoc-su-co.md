@@ -34,7 +34,8 @@ Phải bấm Fetch Latest Updates trước khi Update Available hiện đúng SH
 
 ## 05/11/2026: comment `@codex` trên repo này không đánh thức Codex
 
-Tích hợp GitHub của Codex chưa bật cho repo sonneto nên không có tài khoản
-`chatgpt-codex-connector[bot]` nào đọc comment. Mọi comment "của Codex" tới nay là
+Chưa thấy tài khoản `chatgpt-codex-connector[bot]` trả lời trên repo sonneto
+dù đã gọi `@codex review` (06/11, chờ hơn 30 phút), trong khi bên vagabond bot
+trả lời trong vài phút. Mọi comment "của Codex" tới nay là
 Codex local đăng bằng tài khoản anh Việt. Giao việc xong phải báo anh Việt dán
 cho Codex chạy, hoặc anh bật repo này trong phần GitHub của Codex.

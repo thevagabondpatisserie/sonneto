@@ -32,9 +32,10 @@ tại; ghi chú trong Claude Project chỉ là nhật ký. Nhật ký đầy đ�
 
 1. Codex cloud qua tích hợp GitHub (tài khoản `chatgpt-codex-connector[bot]`): chỉ
    hoạt động khi repo `thevagabondpatisserie/sonneto` đã được bật trong phần
-   GitHub của Codex (chatgpt.com/codex, mục Settings, GitHub). Tới 05/11/2026 repo
-   này CHƯA bật, nên comment `@codex` trên PR không đánh thức ai. Kiểm bằng cách
-   xem có comment nào của `chatgpt-codex-connector[bot]` chưa.
+   GitHub của Codex (chatgpt.com/codex, mục Settings, GitHub). Tới 06/11/2026 chưa
+   có comment nào của `chatgpt-codex-connector[bot]` trên repo này, dù đã gọi
+   `@codex review` trên PR #5 và chờ hơn 30 phút (bên vagabond bot trả lời trong
+   vài phút). Chỉ coi luồng tự động đã chạy khi thấy comment của bot.
 2. Codex local trên máy anh Việt: đăng comment bằng chính tài khoản
    `thevagabondpatisserie`. Chỉ chạy khi anh Việt mở Codex và dán việc vào.
 
