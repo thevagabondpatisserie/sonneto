@@ -58,3 +58,7 @@ Build xong phải commit cả `sonneto/public/frontend` và `sonneto/www/sonneto
 - Video DRM (đề xuất VdoCipher, làm sau).
 - Trang chi tiết từng khoá; nút Gia hạn và Tải công thức đang chưa nối.
 - Chặn học viên đi vòng qua đường `/lms` có sẵn của Frappe Learning để xem bài đã hết hạn.
+
+## Xem thiết kế đã duyệt không qua Higgsfield
+
+Chạy `python3 preview/serve.py`, mở http://127.0.0.1:8766/ trên cùng máy. Có sẵn build độc lập; xem [hướng dẫn preview](preview/README.md). Higgsfield chỉ dùng phác thảo; source, assets và đường triển khai thuộc repo Sonneto.
